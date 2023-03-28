@@ -1,12 +1,18 @@
 {
   "name": "unfolder",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "Tiny tool to move files from nested directories to the root directory.",
+  "bin": "unfold.js",
   "main": "unfold.js",
   "scripts": {
     "start": "node unfold.js"
   },
-  "keywords": [],
+  "keywords": [
+    "cli",
+    "utility",
+    "js",
+    "Node"
+  ],
   "author": "",
   "license": "ISC"
 }

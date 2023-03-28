@@ -1,20 +1,21 @@
-#!/usr/bin/node
+#!/usr/bin/env node
 
 const fs = require('fs');
 const path = require('path');
 
-if (process.argv.length > 1) {
-  throw 'Too many arguments'
+if (process.argv.length > 3) {
+    console.error('Too many arguments');
 }
 
-if (process.argv[0] && !fs.existsSync(process.argv[0])) {
-  throw 'You have provided an invalid path'
+if (process.argv[2] && !fs.existsSync(process.argv[2])) {
+    console.error('You have provided an invalid path');
 }
-const directoryPath = process.argv[0] || __dirname;
+
+const directoryPath = process.argv[2] || './';
 
 fs.readdir(directoryPath, (err, files) => {
   if (err) {
-    console.log('Error getting directory contents:', err);
+    console.error('Error getting directory contents:', err);
     return;
   }
   files.forEach((file) => {
@@ -22,7 +23,7 @@ fs.readdir(directoryPath, (err, files) => {
     if (fs.statSync(filePath).isDirectory()) {
       fs.readdir(filePath, (err, subFiles) => {
         if (err) {
-          console.log('Error getting subdirectory contents:', err);
+          console.error('Error getting subdirectory contents:', err);
           return;
         }
         subFiles.forEach((subFile) => {
@@ -30,10 +31,10 @@ fs.readdir(directoryPath, (err, files) => {
           const newFilePath = path.join(directoryPath, subFile);
           fs.rename(subFilePath, newFilePath, (err) => {
             if (err) {
-              console.log('Error moving file:', err);
+              console.error('Error moving file:', err);
               return;
             }
-            console.log(`Moved file ${subFilePath} to ${newFilePath}`);
+            console.error(`Moved file ${subFilePath} to ${newFilePath}`);
           });
         });
       });
