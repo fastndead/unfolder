@@ -1,6 +1,6 @@
 {
   "name": "unfolder",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Tiny tool to move files from nested directories to the root directory.",
   "bin": "unfold.js",
   "main": "unfold.js",
